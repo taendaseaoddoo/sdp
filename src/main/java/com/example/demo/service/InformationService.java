@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.repository.InformationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,4 +9,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class InformationService {
+
+    @Autowired
+    private InformationRepository informationRepository = null;
+
 }
