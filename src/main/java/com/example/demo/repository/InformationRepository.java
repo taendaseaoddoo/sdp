@@ -5,10 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by yanmaoyuan on 2018/4/16.
  */
 @Repository
 public interface InformationRepository extends JpaRepository<Information, String>, JpaSpecificationExecutor<Information> {
+
+    List<Information> getAllByIsDeleteEquals(int isDeleted);
 
 }

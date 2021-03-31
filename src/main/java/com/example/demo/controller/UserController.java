@@ -42,8 +42,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/getOne")
-    public HashMap<String, Object> findUser(@RequestParam(value = "userUid") String userUid) {
-        User user = userService.getUserByUid(userUid);
+    public HashMap<String, Object> findUser(@RequestParam(value = "userId") String userId) {
+        User user = userService.getUserById(userId);
         if(user != null){
             hashMap.put("status", "success");
             hashMap.put("user", user);
@@ -54,8 +54,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/getInfoList")
-    public HashMap<String, Object> getInfoList(@RequestParam(value = "userUid") String userUid) {
-        User user = userService.getUserByUid(userUid);
+    public HashMap<String, Object> getInfoList(@RequestParam(value = "userId") String userId) {
+        User user = userService.getUserById(userId);
         if(user.getCollects() != null){
             hashMap.put("status", "success");
             hashMap.put("infoList", user.getCollects());
@@ -66,9 +66,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/addCollect")
-    public void addCollect(@RequestParam(value = "userUid") String userUid,@RequestParam(value = "informationUid") String informationUid) {
-        User user = userService.getUserByUid(userUid);
-        Information information = informationService.getInformationByUid(informationUid);
+    public void addCollect(@RequestParam(value = "userId") String userId,@RequestParam(value = "informationId") String informationId) {
+        User user = userService.getUserById(userId);
+        Information information = informationService.getInformationById(informationId);
         List<Information> infos = user.getCollects();
         infos.add(information);
         user.setCollects(infos);
@@ -76,9 +76,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/removeCollect")
-    public void removeCollect(@RequestParam(value = "userUid") String userUid,@RequestParam(value = "informationUid") String informationUid) {
-        User user = userService.getUserByUid(userUid);
-        Information information = informationService.getInformationByUid(informationUid);
+    public void removeCollect(@RequestParam(value = "userId") String userId,@RequestParam(value = "informationId") String informationId) {
+        User user = userService.getUserById(userId);
+        Information information = informationService.getInformationById(informationId);
         List<Information> infos = user.getCollects();
         infos.remove(information);
         user.setCollects(infos);

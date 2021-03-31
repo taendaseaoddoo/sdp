@@ -58,7 +58,7 @@ public class Information {
     private List<User> users = new ArrayList<>();
 
     //信息是否删除
-    private boolean isDelete;
+    private int isDelete;
 
     public String getInformationId() {
         return informationId;
@@ -164,11 +164,11 @@ public class Information {
         this.users = users;
     }
 
-    public boolean isDelete() {
+    public int getIsDelete() {
         return isDelete;
     }
 
-    public void setDelete(boolean delete) {
-        isDelete = delete;
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 }
