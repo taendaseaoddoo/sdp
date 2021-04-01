@@ -18,7 +18,7 @@ public class Comment {
     private String commentId;
 
     //订单ID
-    private String orderId;
+    private String indentId;
 
     //评价者ID
     private String evaluatorId;
@@ -30,7 +30,7 @@ public class Comment {
     private Date createTime;
 
     //评价类型
-    private String commentType;
+    private int commentType;
 
     //评价理由
     private String reason;
@@ -43,12 +43,12 @@ public class Comment {
         this.commentId = commentId;
     }
 
-    public String getOrderId() {
-        return orderId;
+    public String getIndentId() {
+        return indentId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setIndentId(String indentId) {
+        this.indentId = indentId;
     }
 
     public String getEvaluatorId() {
@@ -75,11 +75,11 @@ public class Comment {
         this.createTime = createTime;
     }
 
-    public String getCommentType() {
+    public int getCommentType() {
         return commentType;
     }
 
-    public void setCommentType(String commentType) {
+    public void setCommentType(int commentType) {
         this.commentType = commentType;
     }
 

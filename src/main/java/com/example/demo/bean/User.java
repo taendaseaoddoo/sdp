@@ -30,6 +30,9 @@ public class User {
     //用户所属学院
     private String department;
 
+    //用户所在专业
+    private String major;
+
     //用户微信号
     private String wechatId;
 
@@ -81,6 +84,14 @@ public class User {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String getWechatId() {
