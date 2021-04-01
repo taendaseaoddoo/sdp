@@ -12,6 +12,7 @@ import java.util.List;
  * Created by yanmaoyuan on 2018/4/16.
  */
 @RestController
+@RequestMapping(value = "/tag")
 public class TagController {
 
     HashMap<String, Object> hashMap = new HashMap<>();

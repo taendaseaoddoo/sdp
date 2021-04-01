@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.bean.Comment;
 import com.example.demo.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
  * Created by yanmaoyuan on 2018/4/16.
  */
 @RestController
+@RequestMapping(value = "/comment")
 public class CommentController {
 
     HashMap<String, Object> hashMap = new HashMap<>();
@@ -23,7 +21,7 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addComment(@RequestParam(value = "comment")Comment comment) {
+    public HashMap<String, Object> addComment(@RequestParam(value = "comment") Comment comment) {
         commentService.addComment(comment);
         if(comment != null){
             hashMap.put("status", "success");

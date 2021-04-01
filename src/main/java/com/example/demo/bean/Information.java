@@ -1,8 +1,11 @@
 package com.example.demo.bean;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.*;
 
 import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +32,7 @@ public class Information {
     private String location;
 
     //标签
-    @Transient
+    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.LAZY)
     private List<Tag> tags;
 
     //信息详情

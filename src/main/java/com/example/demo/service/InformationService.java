@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.bean.Information;
+import com.example.demo.bean.Tag;
 import com.example.demo.repository.InformationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,11 @@ public class InformationService {
     public List<Information> getInformationAvailable() {
         return informationRepository.getAllByIsDeleteEquals(0);
     }
+
+    @Transactional
+    public List<Information> getInformationByCondition(String location, List<Tag> tags) { return informationRepository.getAllByLocationEqualsAndTagsIn(location, tags); }
+
+    @Transactional
+    public List<Information> getAvailableByUser(String userId) { return informationRepository.getAllByIsDeleteEqualsAndUserIdEquals(0, userId); }
 
 }

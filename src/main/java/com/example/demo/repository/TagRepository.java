@@ -18,6 +18,6 @@ public interface TagRepository extends JpaRepository<Tag, String>, JpaSpecificat
     List<Tag> getAllByParentIdEquals(String str);
 
     @Modifying
-    @Query("delete from tag t where t.tagId = ?1")
+    @Query("delete from Tag t where t.tagId = ?1")
     int deleteByTagId(String tagId);
 }

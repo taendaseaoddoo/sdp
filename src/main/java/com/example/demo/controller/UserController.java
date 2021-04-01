@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.bean.Information;
-import com.example.demo.bean.User;
+import com.example.demo.bean.*;
+import com.example.demo.service.CommentService;
+import com.example.demo.service.IndentService;
 import com.example.demo.service.InformationService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by yanmaoyuan on 2018/4/16.
  */
 @RestController
+@RequestMapping(value = "/user")
 public class UserController {
 
     HashMap<String, Object> hashMap = new HashMap<>();
@@ -23,6 +25,12 @@ public class UserController {
 
     @Autowired
     private InformationService informationService;
+
+    @Autowired
+    private IndentService indentService;
+
+    @Autowired
+    private CommentService commentService;
 
     @PostMapping(value = "/add")
     public HashMap<String, Object> addUser(@RequestParam(value = "user") User user) {
@@ -83,6 +91,26 @@ public class UserController {
         infos.remove(information);
         user.setCollects(infos);
         userService.addUser(user);
+    }
+
+    @GetMapping(value = "/getRate")
+    public HashMap<String, Object> getRate(@RequestParam(value = "userId") String userId) {
+        List<Indent> indents = indentService.getIndentByStatusAndUser("已完成", userId);
+        int total = indents.size();
+        List<Comment> comments = commentService.getCommentByUser(userId);
+        int good = comments.size();
+        double rate = 0.0;
+        if(total != 0){
+            rate = (good/total) * 100;
+        }else{
+        }
+        if(indents != null && comments != null){
+            hashMap.put("status", "success");
+            hashMap.put("rate", rate);
+        }else{
+            hashMap.put("status", "failure");
+        }
+        return hashMap;
     }
 
 }

@@ -19,4 +19,6 @@ public interface IndentRepository extends JpaRepository<Indent, String>, JpaSpec
 
     List<Indent> getAllByApplicationIdEqualsAndStatusNot(String applicantId, String status);
 
+    List<Indent> getAllByApplicationIdEqualsOrPublisherIdEqualsAndStatusEquals(String userId, String userid, String status);
+
 }

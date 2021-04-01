@@ -14,7 +14,7 @@ public class Tag {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(length = 36)
-    private String TagId;
+    private String tagId;
 
     //标签所属父ID
     private String parentId;
@@ -26,11 +26,11 @@ public class Tag {
     private String description;
 
     public String getTagId() {
-        return TagId;
+        return tagId;
     }
 
     public void setTagId(String tagId) {
-        TagId = tagId;
+        tagId = tagId;
     }
 
     public String getParentId() {

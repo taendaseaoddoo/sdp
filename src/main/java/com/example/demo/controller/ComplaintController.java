@@ -13,6 +13,7 @@ import java.util.Objects;
  * Created by yanmaoyuan on 2018/4/16.
  */
 @RestController
+@RequestMapping(value = "/complaint")
 public class ComplaintController {
 
     HashMap<String, Object> hashMap = new HashMap<>();

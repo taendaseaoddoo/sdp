@@ -32,4 +32,7 @@ public class CommentService {
     @Transactional
     public List<Comment> getBadComment(String evaluatedId) { return commentRepository.getAllByEvaluatedIdEqualsAndCommentTypeEquals(evaluatedId, 1); }
 
+    @Transactional
+    public List<Comment> getCommentByUser(String userId) { return commentRepository.getAllByEvaluatedIdEqualsOrEvaluatorIdEqualsAndCommentTypeEquals(userId, userId, 0); }
+
 }
