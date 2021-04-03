@@ -17,13 +17,12 @@ import java.util.List;
 @RequestMapping(value = "/information")
 public class InformationController {
 
-    HashMap<String, Object> hashMap = new HashMap<>();
-
     @Autowired
     private InformationService informationService;
 
     @GetMapping(value = "/getOne")
     public HashMap<String, Object> findInformation(@RequestParam(value = "informationId") String informationId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Information information = informationService.getInformationById(informationId);
         if(information != null){
             hashMap.put("status", "success");
@@ -36,6 +35,7 @@ public class InformationController {
 
     @PostMapping(value = "/add")
     public HashMap<String, Object> addInformation(@RequestParam(value = "information") Information information) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         informationService.addInformation(information);
         if(information != null){
             hashMap.put("status", "success");
@@ -48,6 +48,7 @@ public class InformationController {
 
     @GetMapping(value = "/getAllAvailable")
     public HashMap<String, Object> getAvailableInformation() {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Information> informations = informationService.getInformationAvailable();
         if(informations != null){
             hashMap.put("status", "success");
@@ -60,6 +61,7 @@ public class InformationController {
 
     @GetMapping(value = "/screen")
     public HashMap<String, Object> screenInformation(@RequestParam("location") String location, @RequestParam("tags") List<Tag> tags) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Information> informations = informationService.getInformationByCondition(location, tags);
         if(informations != null){
             hashMap.put("status", "success");
@@ -72,6 +74,7 @@ public class InformationController {
 
     @PostMapping(value = "/modify")
     public HashMap<String, Object> modifyInformation(@RequestParam(value = "informationId") String informationId, @RequestParam(value = "status") String status) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Information information = informationService.getInformationById(informationId);
         information.setStatus(status);
         informationService.addInformation(information);
@@ -86,6 +89,7 @@ public class InformationController {
 
     @GetMapping(value = "/getAvailableByUser")
     public HashMap<String, Object> getAvailableByUser(@RequestParam(value = "userId") String userId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Information> informations = informationService.getAvailableByUser(userId);
         if(informations != null){
             hashMap.put("status", "success");
@@ -98,6 +102,7 @@ public class InformationController {
 
     @PostMapping(value = "/modifyIsDelete")
     public HashMap<String, Object> modifyIsDelete(@RequestParam(value = "informationId") String informationId, @RequestParam(value = "type") int type) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Information information = informationService.getInformationById(informationId);
         information.setIsDelete(type);
         informationService.addInformation(information);

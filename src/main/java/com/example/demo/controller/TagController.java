@@ -15,13 +15,12 @@ import java.util.List;
 @RequestMapping(value = "/tag")
 public class TagController {
 
-    HashMap<String, Object> hashMap = new HashMap<>();
-
     @Autowired
     private TagService tagService;
 
     @PostMapping(value = "/add")
     public HashMap<String, Object> addTag(@RequestParam(value = "tag") Tag tag) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         tagService.addTag(tag);
         if(tag != null){
             hashMap.put("status", "success");
@@ -34,6 +33,7 @@ public class TagController {
 
     @DeleteMapping(value = "/delete")
     public HashMap<String, Object> deleteTag(@RequestParam(value = "tag") Tag tag) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         String tagId = tag.getTagId();
         tagService.deleteTag(tagId);
         if(tag != null){
@@ -47,6 +47,7 @@ public class TagController {
 
     @PostMapping(value = "/modify")
     public HashMap<String, Object> modifyTag(@RequestParam(value = "tag") Tag tag) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         tagService.addTag(tag);
         if(tag != null){
             hashMap.put("status", "success");
@@ -59,6 +60,7 @@ public class TagController {
 
     @GetMapping(value = "/getAll")
     public HashMap<String, Object> getAllTag() {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Tag> tags = tagService.getAllTag();
         if(tags != null){
             hashMap.put("status", "success");
@@ -71,6 +73,7 @@ public class TagController {
 
     @GetMapping(value = "/getAllParentTag")
     public HashMap<String, Object> getAllParentTag() {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Tag> tags = tagService.getAllParentTag();
         if(tags != null){
             hashMap.put("status", "success");
@@ -83,6 +86,7 @@ public class TagController {
 
     @GetMapping(value = "/getChildTag")
     public HashMap<String, Object> getChildTag(@RequestParam(value = "parentTag") Tag tag) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         String parentId = tag.getParentId();
         List<Tag> tags = tagService.getChildTag(parentId);
         if(tags != null){

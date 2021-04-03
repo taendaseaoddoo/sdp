@@ -18,8 +18,6 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    HashMap<String, Object> hashMap = new HashMap<>();
-
     @Autowired
     private UserService userService;
 
@@ -34,6 +32,7 @@ public class UserController {
 
     @PostMapping(value = "/add")
     public HashMap<String, Object> addUser(@RequestParam(value = "user") User user) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         userService.addUser(user);
         if(user != null){
             hashMap.put("status", "success");
@@ -51,6 +50,7 @@ public class UserController {
 
     @GetMapping(value = "/getOne")
     public HashMap<String, Object> findUser(@RequestParam(value = "userId") String userId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         User user = userService.getUserById(userId);
         if(user != null){
             hashMap.put("status", "success");
@@ -63,6 +63,7 @@ public class UserController {
 
     @GetMapping(value = "/getInfoList")
     public HashMap<String, Object> getInfoList(@RequestParam(value = "userId") String userId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         User user = userService.getUserById(userId);
         if(user.getCollects() != null){
             hashMap.put("status", "success");
@@ -75,6 +76,7 @@ public class UserController {
 
     @PostMapping(value = "/addCollect")
     public void addCollect(@RequestParam(value = "userId") String userId,@RequestParam(value = "informationId") String informationId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         User user = userService.getUserById(userId);
         Information information = informationService.getInformationById(informationId);
         List<Information> infos = user.getCollects();
@@ -95,6 +97,7 @@ public class UserController {
 
     @GetMapping(value = "/getRate")
     public HashMap<String, Object> getRate(@RequestParam(value = "userId") String userId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Indent> indents = indentService.getIndentByStatusAndUser("已完成", userId);
         int total = indents.size();
         List<Comment> comments = commentService.getCommentByUser(userId);

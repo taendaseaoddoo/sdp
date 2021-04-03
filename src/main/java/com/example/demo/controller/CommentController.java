@@ -15,13 +15,12 @@ import java.util.List;
 @RequestMapping(value = "/comment")
 public class CommentController {
 
-    HashMap<String, Object> hashMap = new HashMap<>();
-
     @Autowired
     private CommentService commentService;
 
     @PostMapping(value = "/add")
     public HashMap<String, Object> addComment(@RequestParam(value = "comment") Comment comment) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         commentService.addComment(comment);
         if(comment != null){
             hashMap.put("status", "success");
@@ -34,6 +33,7 @@ public class CommentController {
 
     @GetMapping(value = "/getByIndent")
     public HashMap<String, Object> getCommentByIndent(@RequestParam(value = "indentId") String indentId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Comment comment = commentService.getCommentByIndent(indentId);
         if(comment != null){
             hashMap.put("status", "success");
@@ -46,6 +46,7 @@ public class CommentController {
 
     @GetMapping(value = "/getOne")
     public HashMap<String, Object> findComment(@RequestParam("commentId") String commentId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Comment comment = commentService.getCommentById(commentId);
         if(comment != null){
             hashMap.put("status", "success");
@@ -58,6 +59,7 @@ public class CommentController {
 
     @GetMapping(value = "/getGood")
     public HashMap<String, Object> getGoodComment(@RequestParam("evaluatedId") String evaluatedId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Comment> comments = commentService.getGoodComment(evaluatedId);
         if(comments != null){
             hashMap.put("status", "success");
@@ -70,6 +72,7 @@ public class CommentController {
 
     @GetMapping(value = "/getBad")
     public HashMap<String, Object> getBadComment(@RequestParam("evaluatedId") String evaluatedId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Comment> comments = commentService.getBadComment(evaluatedId);
         if(comments != null){
             hashMap.put("status", "success");
@@ -82,6 +85,7 @@ public class CommentController {
 
     @GetMapping(value = "/numOfGood")
     public HashMap<String, Object> getNumOfGood(@RequestParam("evaluatedId") String evaluatedId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Comment> comments = commentService.getGoodComment(evaluatedId);
         int num = comments.size();
         if(comments != null){
@@ -95,6 +99,7 @@ public class CommentController {
 
     @GetMapping(value = "/numOfBad")
     public HashMap<String, Object> getNumOfBad(@RequestParam("evaluatedId") String evaluatedId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Comment> comments = commentService.getBadComment(evaluatedId);
         int num = comments.size();
         if(comments != null){

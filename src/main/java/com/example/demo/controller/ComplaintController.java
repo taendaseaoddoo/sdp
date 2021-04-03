@@ -16,13 +16,12 @@ import java.util.Objects;
 @RequestMapping(value = "/complaint")
 public class ComplaintController {
 
-    HashMap<String, Object> hashMap = new HashMap<>();
-
     @Autowired
     private ComplaintService complaintService;
 
     @PostMapping(value = "/add")
     public HashMap<String, Object> addComplaint(@RequestParam(value = "complaint") Complaint complaint) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         complaintService.addComplaint(complaint);
         if(complaint != null){
             hashMap.put("status", "success");
@@ -35,6 +34,7 @@ public class ComplaintController {
 
     @GetMapping(value = "/getOne")
     public HashMap<String, Object> findComplaint(@RequestParam(value = "complaintId") String complaintId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Complaint complaint = complaintService.getComplaintById(complaintId);
         if(complaint != null){
             hashMap.put("status", "success");
@@ -47,6 +47,7 @@ public class ComplaintController {
 
     @DeleteMapping(value = "/delete")
     public HashMap<String, Object> deleteComplaint(@RequestParam(value = "complaint") Complaint complaint) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         String complaintId = complaint.getComplaintId();
         complaintService.deleteComplaint(complaintId);
         if(complaint != null){
@@ -60,6 +61,7 @@ public class ComplaintController {
 
     @GetMapping(value = "/getAll")
     public HashMap<String, Object> getAllComplaint() {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Complaint> complaints = complaintService.getAllComplaint();
         if(complaints != null){
             hashMap.put("status", "success");
@@ -72,6 +74,7 @@ public class ComplaintController {
 
     @GetMapping(value = "/getByUser")
     public HashMap<String, Object> getComplaintByUser(@RequestParam(value = "userId") String userId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Complaint> complaints = complaintService.getAllByUser(userId);
         if(complaints != null){
             hashMap.put("status", "success");
@@ -84,6 +87,7 @@ public class ComplaintController {
 
     @PostMapping(value = "/modifyStatus")
     public HashMap<String, Object> modifyComplaintStatus(@RequestParam(value = "complaintId") String complaintId, @RequestParam(value = "status") String status) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Complaint complaint = complaintService.getComplaintById(complaintId);
         complaint.setStatus(status);
         complaintService.addComplaint(complaint);
@@ -98,6 +102,7 @@ public class ComplaintController {
 
     @GetMapping(value  = "/getByStatus")
     public HashMap<String, Object> getComplaintByStatus(@RequestParam("status") String status) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Complaint> complaints = complaintService.getComplaintByStatus(status);
         if(complaints != null){
             hashMap.put("status", "success");

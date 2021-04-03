@@ -17,13 +17,12 @@ import java.util.List;
 @RequestMapping(value = "/indent")
 class IndentController {
 
-    HashMap<String, Object> hashMap = new HashMap<>();
-
     @Autowired
     private IndentService indentService;
 
     @GetMapping(value = "/getOne")
     public HashMap<String, Object> findIndent(@RequestParam(value = "indentId") String indentId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Indent indent = indentService.getIndentById(indentId);
         if(indent != null){
             hashMap.put("status", "success");
@@ -36,6 +35,7 @@ class IndentController {
 
     @PostMapping(value = "/add")
     public HashMap<String, Object> addIndent(@RequestParam(value = "indent") Indent indent) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         indentService.addIndent(indent);
         if(indent != null){
             hashMap.put("status", "success");
@@ -48,6 +48,7 @@ class IndentController {
 
     @GetMapping(value = "/getByInformation")
     public HashMap<String, Object> getByInformation(@RequestParam(value = "informationId") String informationId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         List<Indent> indents = indentService.getIndentByInformationId(informationId);
         if(indents != null){
             hashMap.put("status", "success");
@@ -60,6 +61,7 @@ class IndentController {
 
     @GetMapping(value = "/getDone")
     public HashMap<String, Object> getByStatus(@RequestParam(value = "applicantId") String applicantId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         String status = "已完成";
         List<Indent> indents = indentService.getIndentByStatus(applicantId, status);
         if(indents != null){
@@ -73,6 +75,7 @@ class IndentController {
 
     @GetMapping(value = "/getIncomplete")
     public HashMap<String, Object> getByStatusIn(@RequestParam(value = "applicantId") String applicantId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         String status = "已完成";
         List<Indent> indents = indentService.getIndentByStatusNot(applicantId, status);
         if(indents != null){
@@ -86,6 +89,7 @@ class IndentController {
 
     @PostMapping(value = "/updateTime")
     public void updateModifyTime(@RequestParam(value = "indentId") String indentId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Indent indent = indentService.getIndentById(indentId);
         indent.setModifyTime(new Date());
         indentService.addIndent(indent);
@@ -93,6 +97,7 @@ class IndentController {
 
     @PostMapping(value = "/updateStatus")
     public void updateStatus(@RequestParam(value = "indentId") String indentId, @RequestParam(value = "status") String status) {
+        HashMap<String, Object> hashMap = new HashMap<>();
         Indent indent = indentService.getIndentById(indentId);
         indent.setStatus(status);
         indentService.addIndent(indent);
