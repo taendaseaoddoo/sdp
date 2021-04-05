@@ -25,7 +25,7 @@ public class User {
     private char gender;
 
     //用户学号
-    private int studentId;
+    private String studentId;
 
     //用户所属学院
     private String department;
@@ -70,11 +70,11 @@ public class User {
         this.gender = gender;
     }
 
-    public int getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 
