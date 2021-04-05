@@ -37,7 +37,7 @@ public class User {
     private String wechatId;
 
     //用户手机号
-    private int phoneNum;
+    private String phoneNum;
 
     //用户获得好评数
     private int favorableNum;
@@ -102,11 +102,11 @@ public class User {
         this.wechatId = wechatId;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(int phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 
