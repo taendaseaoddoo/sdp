@@ -23,4 +23,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
+    public User getUserByWechat(String wechatId) { return userRepository.getByWechatIdEquals(wechatId); }
+
 }

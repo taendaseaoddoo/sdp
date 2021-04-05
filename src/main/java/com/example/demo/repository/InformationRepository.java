@@ -20,4 +20,6 @@ public interface InformationRepository extends JpaRepository<Information, String
 
     List<Information> getAllByIsDeleteEqualsAndUserIdEquals(int isDeleted, String userId);
 
+    List<Information> getAllByUserIdEqualsAndStatusIn(String userId, List<String> status);
+
 }

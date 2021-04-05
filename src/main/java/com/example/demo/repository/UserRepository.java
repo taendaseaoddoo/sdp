@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, String>, JpaSpecific
 
     User findUserByUserId(String userId);
 
+    User getByWechatIdEquals(String wechatId);
+
 }

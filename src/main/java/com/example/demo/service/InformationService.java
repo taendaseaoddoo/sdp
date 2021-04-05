@@ -39,4 +39,9 @@ public class InformationService {
     @Transactional
     public List<Information> getAvailableByUser(String userId) { return informationRepository.getAllByIsDeleteEqualsAndUserIdEquals(0, userId); }
 
+    @Transactional
+    public List<Information> getByUserAndStatus(String userId, List<String> status) {
+        return informationRepository.getAllByUserIdEqualsAndStatusIn(userId, status);
+    }
+
 }

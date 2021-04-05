@@ -61,6 +61,19 @@ public class UserController {
         return hashMap;
     }
 
+    @GetMapping(value = "/getByWechat")
+    public HashMap<String, Object> getUserByWechat(@RequestParam(value = "wechatId") String wechatId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        User user = userService.getUserByWechat(wechatId);
+        if(user != null){
+            hashMap.put("status", "success");
+            hashMap.put("user", user);
+        }else{
+            hashMap.put("status", "failure");
+        }
+        return hashMap;
+    }
+
     @GetMapping(value = "/getInfoList")
     public HashMap<String, Object> getInfoList(@RequestParam(value = "userId") String userId) {
         HashMap<String, Object> hashMap = new HashMap<>();
