@@ -35,4 +35,7 @@ public class CommentService {
     @Transactional
     public List<Comment> getCommentByUser(String userId) { return commentRepository.getAllByEvaluatedIdEqualsOrEvaluatorIdEqualsAndCommentTypeEquals(userId, userId, 0); }
 
+    @Transactional
+    public List<Comment> getAllComments(String evaluatedId) { return commentRepository.getAllByEvaluatedIdEquals(evaluatedId); }
+
 }

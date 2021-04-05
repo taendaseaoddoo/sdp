@@ -179,7 +179,7 @@ class IndentController {
             map3.put("information", information);
             listRelease.add(map3);
         }
-       hashMap.put("release", listRelease);
+        hashMap.put("release", listRelease);
 
         return hashMap;
     }

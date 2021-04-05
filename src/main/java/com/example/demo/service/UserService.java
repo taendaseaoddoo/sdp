@@ -26,4 +26,5 @@ public class UserService {
     @Transactional
     public User getUserByWechat(String wechatId) { return userRepository.getByWechatIdEquals(wechatId); }
 
+
 }

@@ -8,6 +8,7 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -123,6 +124,28 @@ public class UserController {
         if(indents != null && comments != null){
             hashMap.put("status", "success");
             hashMap.put("rate", rate);
+        }else{
+            hashMap.put("status", "failure");
+        }
+        return hashMap;
+    }
+
+    @GetMapping(value = "/getCollections")
+    public HashMap<String, Object> getAllCollections(@RequestParam(value = "userId") String userId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        List<HashMap<String, Object>> list = new ArrayList<>();
+        User user = userService.getUserById(userId);
+        List<Information> collects = user.getCollects();
+        for(Information collect : collects){
+            HashMap<String, Object> map1 = new HashMap<>();
+            User user1 = userService.getUserById(collect.getUserId());
+            map1.put("user", user1);
+            map1.put("information", collect);
+            list.add(map1);
+        }
+        if(list != null){
+            hashMap.put("status", "success");
+            hashMap.put("collections", list);
         }else{
             hashMap.put("status", "failure");
         }
