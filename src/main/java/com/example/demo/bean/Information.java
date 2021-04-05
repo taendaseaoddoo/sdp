@@ -41,6 +41,9 @@ public class Information {
     //价格
     private double price;
 
+    //信息发布时间
+    private Date createTime;
+
     //信息有效时间
     private Date deadline;
 
@@ -173,5 +176,13 @@ public class Information {
 
     public void setIsDelete(int isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

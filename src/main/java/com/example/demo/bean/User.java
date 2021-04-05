@@ -42,6 +42,12 @@ public class User {
     //用户获得好评数
     private int favorableNum;
 
+    //用户头像
+    private String avatar;
+
+    //用户角色
+    private String role;
+
     //用户收藏列表
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<Information> collects;
@@ -124,5 +130,21 @@ public class User {
 
     public void setCollects(List<Information> collects) {
         this.collects = collects;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

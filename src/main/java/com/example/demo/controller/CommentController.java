@@ -34,13 +34,31 @@ public class CommentController {
     @GetMapping(value = "/getByIndent")
     public HashMap<String, Object> getCommentByIndent(@RequestParam(value = "indentId") String indentId) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        Comment comment = commentService.getCommentByIndent(indentId);
-        if(comment != null){
+        List<Comment> comments = commentService.getCommentByIndent(indentId);
+        if(comments != null){
             hashMap.put("status", "success");
-            hashMap.put("comment", comment);
+            hashMap.put("comments", comments);
         }else{
             hashMap.put("status", "failure");
         }
+        return hashMap;
+    }
+
+    @GetMapping(value = "/getMyIndent")
+    public HashMap<String, Object> getCommentByIndent(@RequestParam(value = "indentId") String indentId, @RequestParam(value = "evaluatedId") String evaluatedId) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        List<Comment> comments = commentService.getCommentByIndent(indentId);
+        int count=0;
+        for(int i=0;i<comments.size();i++) {
+            if (comments.get(i).getEvaluatedId() == evaluatedId) {
+                count++;
+                hashMap.put("status", "success");
+                hashMap.put("comment", comments.get(i));
+            }
+        }
+        if(count==0)
+            hashMap.put("status","failure");
+
         return hashMap;
     }
 

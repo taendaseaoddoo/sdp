@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, String>, JpaSpecificationExecutor<Comment> {
 
-    Comment getAllByIndentIdEquals(String indentId);
+    List<Comment> getAllByIndentIdEquals(String indentId);
 
     List<Comment> getAllByEvaluatedIdEqualsAndCommentTypeEquals(String evaluatedId, int type);
 
