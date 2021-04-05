@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.bean.Comment;
+import com.example.demo.bean.Complaint;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,9 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, String>, JpaSpecificationExecutor<Comment> {
 
-    List<Comment> getAllByIndentIdEquals(String indentId);
+    Comment findCommentByCommentId(String commentId);
+
+    Comment getByIndentIdEquals(String indentId);
 
     List<Comment> getAllByEvaluatedIdEqualsAndCommentTypeEquals(String evaluatedId, int type);
 

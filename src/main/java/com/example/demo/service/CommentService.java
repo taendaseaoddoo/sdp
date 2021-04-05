@@ -21,10 +21,10 @@ public class CommentService {
     public void addComment(Comment comment) { commentRepository.save(comment); }
 
     @Transactional
-    public List<Comment> getCommentByIndent(String indentId) { return commentRepository.getAllByIndentIdEquals(indentId); }
+    public Comment getCommentByIndent(String indentId) { return commentRepository.getByIndentIdEquals(indentId); }
 
     @Transactional
-    public Comment getCommentById(String commentId) { return commentRepository.getOne(commentId); }
+    public Comment getCommentById(String commentId) { return commentRepository.findCommentByCommentId(commentId); }
 
     @Transactional
     public List<Comment> getGoodComment(String evaluatedId) { return commentRepository.getAllByEvaluatedIdEqualsAndCommentTypeEquals(evaluatedId, 0); }

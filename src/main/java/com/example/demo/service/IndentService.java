@@ -20,7 +20,7 @@ public class IndentService {
     private IndentRepository indentRepository = null;
 
     @Transactional
-    public Indent getIndentById(String indentId) { return indentRepository.getOne(indentId); }
+    public Indent getIndentById(String indentId) { return indentRepository.findIndentByIndentId(indentId); }
 
     @Transactional
     public void addIndent(Indent indent) {

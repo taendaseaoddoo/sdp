@@ -15,6 +15,8 @@ import java.util.List;
 @Repository
 public interface ComplaintRepository extends JpaRepository<Complaint, String>, JpaSpecificationExecutor<Complaint> {
 
+    Complaint findComplaintByComplaintId(String complaintId);
+
     @Modifying
     @Query("delete from Complaint com where com.complaintId = ?1")
     int deleteByComplaintId(String complaintId);

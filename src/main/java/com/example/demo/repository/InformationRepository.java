@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import javax.sound.sampled.Line;
 import java.util.List;
 
 /**
@@ -13,6 +14,8 @@ import java.util.List;
  */
 @Repository
 public interface InformationRepository extends JpaRepository<Information, String>, JpaSpecificationExecutor<Information> {
+
+    Information findInformationByInformationId(String informationId);
 
     List<Information> getAllByIsDeleteEquals(int isDeleted);
 

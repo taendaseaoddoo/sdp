@@ -13,6 +13,8 @@ import java.util.List;
 @Repository
 public interface IndentRepository extends JpaRepository<Indent, String>, JpaSpecificationExecutor<Indent> {
 
+    Indent findIndentByIndentId(String indentId);
+
     List<Indent> getAllByInformationIdEquals(String informationId);
 
     List<Indent> getAllByApplicationIdEqualsAndStatusEquals(String applicantId, String status);

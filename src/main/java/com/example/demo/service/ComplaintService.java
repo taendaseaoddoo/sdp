@@ -30,7 +30,7 @@ public class ComplaintService {
     public List<Complaint> getAllByUser(String userId) { return complaintRepository.getAllByUserIdEquals(userId); }
 
     @Transactional
-    public Complaint getComplaintById(String complaintId) { return complaintRepository.getOne(complaintId); }
+    public Complaint getComplaintById(String complaintId) { return complaintRepository.findComplaintByComplaintId(complaintId); }
 
     @Transactional
     public List<Complaint> getComplaintByStatus(String status) { return complaintRepository.getAllByStatusEquals(status); }

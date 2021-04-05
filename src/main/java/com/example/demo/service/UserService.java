@@ -16,7 +16,7 @@ public class UserService {
     private UserRepository userRepository = null;
 
     @Transactional
-    public User getUserById(String userId) { return userRepository.getOne(userId); }
+    public User getUserById(String userId) { return userRepository.findUserByUserId(userId); }
 
     @Transactional
     public void addUser(User user) {

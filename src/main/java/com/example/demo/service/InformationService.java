@@ -20,7 +20,7 @@ public class InformationService {
     private InformationRepository informationRepository = null;
 
     @Transactional
-    public Information getInformationById(String informationId) { return informationRepository.getOne(informationId); }
+    public Information getInformationById(String informationId) { return informationRepository.findInformationByInformationId(informationId); }
 
     @Transactional
     public void addInformation(Information information) {
