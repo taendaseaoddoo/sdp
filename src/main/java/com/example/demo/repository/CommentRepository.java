@@ -16,7 +16,7 @@ public interface CommentRepository extends JpaRepository<Comment, String>, JpaSp
 
     Comment findCommentByCommentId(String commentId);
 
-    Comment getByIndentIdEquals(String indentId);
+    List<Comment> getByIndentIdEquals(String indentId);
 
     List<Comment> getAllByEvaluatedIdEqualsAndCommentTypeEquals(String evaluatedId, int type);
 

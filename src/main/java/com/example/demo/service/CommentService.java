@@ -21,7 +21,7 @@ public class CommentService {
     public void addComment(Comment comment) { commentRepository.save(comment); }
 
     @Transactional
-    public Comment getCommentByIndent(String indentId) { return commentRepository.getByIndentIdEquals(indentId); }
+    public List<Comment> getCommentByIndent(String indentId) { return commentRepository.getByIndentIdEquals(indentId); }
 
     @Transactional
     public Comment getCommentById(String commentId) { return commentRepository.findCommentByCommentId(commentId); }
