@@ -142,7 +142,7 @@ class IndentController {
             indentService.addIndent(indent);
             String informationId = indent.getInformationId();
             List<Indent> indents = indentService.getIndentByInformationId(informationId);
-            for(int i = 0; i < indents.size(); i++){
+            for(int i = indents.size() - 1; i >= 0; i--){
                 if(indents.get(i).getIndentId() == indent.getIndentId()){
                     indents.remove(i);
                 }else{
