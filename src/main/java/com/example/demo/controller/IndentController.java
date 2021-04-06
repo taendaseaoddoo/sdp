@@ -62,10 +62,19 @@ class IndentController {
     @GetMapping(value = "/getByInformation")
     public HashMap<String, Object> getByInformation(@RequestParam(value = "informationId") String informationId) {
         HashMap<String, Object> hashMap = new HashMap<>();
+        List<HashMap<String, Object>> list = new ArrayList<>();
         List<Indent> indents = indentService.getIndentByInformationId(informationId);
-        if(indents != null){
+        for(Indent indent : indents){
+            HashMap<String, Object> map1 = new HashMap<>();
+            String applicationId = indent.getApplicationId();
+            User user = userService.getUserById(applicationId);
+            map1.put("user", user);
+            map1.put("indent", indent);
+            list.add(map1);
+        }
+        if(list != null){
             hashMap.put("status", "success");
-            hashMap.put("indents", indents);
+            hashMap.put("indents", list);
         }else{
             hashMap.put("status", "failure");
         }
