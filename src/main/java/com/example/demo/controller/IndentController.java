@@ -119,19 +119,41 @@ class IndentController {
 
     @PostMapping(value = "/updateStatus")
     public void updateStatus(@RequestParam(value = "indentId") String indentId, @RequestParam(value = "status") String status) {
-//        HashMap<String, Object> hashMap = new HashMap<>();
         Indent indent = indentService.getIndentById(indentId);
         if(status == "完成订单"){
             String oldStatus = indent.getStatus();
             if(oldStatus != "单方完成") {
                 indent.setStatus("单方完成");
+                indentService.addIndent(indent);
+                String informationId = indent.getInformationId();
+                Information information = informationService.getInformationById(informationId);
+                information.setStatus("单方完成");
+                informationService.addInformation(information);
             }else{
                 indent.setStatus("已完成");
+                indentService.addIndent(indent);
+                String informationId = indent.getInformationId();
+                Information information = informationService.getInformationById(informationId);
+                information.setStatus("已完成");
+                informationService.addInformation(information);
+            }
+        }else if(status == "签约"){
+            indent.setStatus("签约");
+            indentService.addIndent(indent);
+            String informationId = indent.getInformationId();
+            List<Indent> indents = indentService.getIndentByInformationId(informationId);
+            for(int i = 0; i < indents.size(); i++){
+                if(indents.get(i).getIndentId() == indent.getIndentId()){
+                    indents.remove(i);
+                }else{
+                    indents.get(i).setStatus("回绝");
+                    indentService.addIndent(indents.get(i));
+                }
             }
         }else{
             indent.setStatus(status);
+            indentService.addIndent(indent);
         }
-        indentService.addIndent(indent);
     }
 
     @GetMapping(value = "/getAll")
