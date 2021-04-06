@@ -46,6 +46,11 @@ class IndentController {
         return hashMap;
     }
 
+    @PostMapping(value = "/delete")
+    public void deleteIndent(@RequestParam(value = "indentId") String indentId) {
+        indentService.deleteIndent(indentId);
+    }
+
     @PostMapping(value = "/add")
     public HashMap<String, Object> addIndent(@RequestParam(value = "indent") Indent indent) {
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -141,9 +146,6 @@ class IndentController {
             indent.setStatus("签约");
             indentService.addIndent(indent);
             String informationId = indent.getInformationId();
-            Information information = informationService.getInformationById(informationId);
-            information.setStatus("履约中");
-            informationService.addInformation(information);
             List<Indent> indents = indentService.getIndentByInformationId(informationId);
             for(int i = indents.size() - 1; i >= 0; i--){
                 if(indents.get(i).getIndentId() == indent.getIndentId()){
@@ -185,7 +187,7 @@ class IndentController {
         hashMap.put("apply", listApply);
 
         String status = "已完成";
-        List<Indent> indentHistory = indentService.getIndentByUserAndStatus(userId, status);
+        List<Indent> indentHistory = indentService.getIndentByStatusAndUser(userId, status);
         List<HashMap<String, Object>> listHistory = new ArrayList<>();
         for(Indent indent : indentHistory) {
             HashMap<String, Object> map2 = new HashMap<>();

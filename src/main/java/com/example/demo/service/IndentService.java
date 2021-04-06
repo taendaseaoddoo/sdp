@@ -30,6 +30,9 @@ public class IndentService {
     }
 
     @Transactional
+    public void deleteIndent(String indentId) { indentRepository.deleteByIndentId(indentId); }
+
+    @Transactional
     public List<Indent> getIndentByInformationId(String informationId) {
         return indentRepository.getAllByInformationIdEquals(informationId);
     }
@@ -45,7 +48,7 @@ public class IndentService {
     }
 
     @Transactional
-    public List<Indent> getIndentByUserAndStatus(String userId, String status) {
+    public List<Indent> getIndentByStatusAndUser(String status, String userId) {
 //        return indentRepository.getAllByApplicationIdEqualsOrPublisherIdEqualsAndStatusEquals(userId, userId, status);
         List<Indent> indents1 = indentRepository.getAllByApplicationIdEqualsAndStatusEquals(userId, status);
         List<Indent> indents2 = indentRepository.getAllByPublisherIdEqualsAndStatusEquals(userId, status);

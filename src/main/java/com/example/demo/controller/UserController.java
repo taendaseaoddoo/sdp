@@ -112,7 +112,7 @@ public class UserController {
     @GetMapping(value = "/getRate")
     public HashMap<String, Object> getRate(@RequestParam(value = "userId") String userId) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        List<Indent> indents = indentService.getIndentByUserAndStatus(userId, "已完成");
+        List<Indent> indents = indentService.getIndentByStatusAndUser("已完成", userId);
         int total = indents.size();
         List<Comment> comments = commentService.getCommentByUser(userId);
         int good = comments.size();
