@@ -46,7 +46,11 @@ public class IndentService {
 
     @Transactional
     public List<Indent> getIndentByStatusAndUser(String status, String userId) {
-        return indentRepository.getAllByApplicationIdEqualsOrPublisherIdEqualsAndStatusEquals(userId, userId, status);
+//        return indentRepository.getAllByApplicationIdEqualsOrPublisherIdEqualsAndStatusEquals(userId, userId, status);
+        List<Indent> indents1 = indentRepository.getAllByApplicationIdEqualsAndStatusEquals(userId, status);
+        List<Indent> indents2 = indentRepository.getAllByPublisherIdEqualsAndStatusEquals(userId, status);
+        indents1.addAll(indents2);
+        return indents1;
     }
 
     @Transactional

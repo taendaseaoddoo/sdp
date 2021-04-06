@@ -33,7 +33,12 @@ public class CommentService {
     public List<Comment> getBadComment(String evaluatedId) { return commentRepository.getAllByEvaluatedIdEqualsAndCommentTypeEquals(evaluatedId, 1); }
 
     @Transactional
-    public List<Comment> getCommentByUser(String userId) { return commentRepository.getAllByEvaluatedIdEqualsOrEvaluatorIdEqualsAndCommentTypeEquals(userId, userId, 0); }
+    public List<Comment> getCommentByUser(String userId) {
+        List<Comment> comments1 = commentRepository.getAllByEvaluatedIdEqualsAndCommentTypeEquals(userId,0);
+        List<Comment> comments2 = commentRepository.getAllByEvaluatorIdEqualsAndCommentTypeEquals(userId,0);
+        comments1.addAll(comments2);
+        return comments1;
+    }
 
     @Transactional
     public List<Comment> getAllComments(String evaluatedId) { return commentRepository.getAllByEvaluatedIdEquals(evaluatedId); }

@@ -20,7 +20,9 @@ public interface CommentRepository extends JpaRepository<Comment, String>, JpaSp
 
     List<Comment> getAllByEvaluatedIdEqualsAndCommentTypeEquals(String evaluatedId, int type);
 
-    List<Comment> getAllByEvaluatedIdEqualsOrEvaluatorIdEqualsAndCommentTypeEquals(String userId, String userid, int type);
+//    List<Comment> getAllByEvaluatedIdEqualsOrEvaluatorIdEqualsAndCommentTypeEquals(String userId, String userid, int type);
+
+    List<Comment> getAllByEvaluatorIdEqualsAndCommentTypeEquals(String evaluatorId, int type);
 
     List<Comment> getAllByEvaluatedIdEquals(String evaluatedId);
 
