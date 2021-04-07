@@ -114,7 +114,7 @@ public class UserController {
         HashMap<String, Object> hashMap = new HashMap<>();
         List<Indent> indents = indentService.getIndentByUserAndStatus(userId, "已完成");
         int total = indents.size();
-        List<Comment> comments = commentService.getCommentByUser(userId);
+        List<Comment> comments = commentService.getGoodComment(userId);
         int good = comments.size();
         double rate = 0.0;
         if(total != 0){
