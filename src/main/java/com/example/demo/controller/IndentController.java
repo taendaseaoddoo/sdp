@@ -128,7 +128,7 @@ class IndentController {
     @PostMapping(value = "/updateStatus")
     public void updateStatus(@RequestParam(value = "indentId") String indentId, @RequestParam(value = "status") String status) {
         Indent indent = indentService.getIndentById(indentId);
-        if(status == "完成订单"){
+        if(("完成订单").equals(status)){
             String oldStatus = indent.getStatus();
             if(oldStatus != "单方完成") {
                 indent.setStatus("单方完成");
@@ -145,7 +145,7 @@ class IndentController {
                 information.setStatus("已完成");
                 informationService.addInformation(information);
             }
-        }else if(status == "签约"){
+        }else if(("签约").equals(status)){
             indent.setStatus("签约");
             indentService.addIndent(indent);
             String informationId = indent.getInformationId();
@@ -154,7 +154,7 @@ class IndentController {
             informationService.addInformation(information);
             List<Indent> indents = indentService.getIndentByInformationId(informationId);
             for(int i = indents.size() - 1; i >= 0; i--){
-                if(indents.get(i).getIndentId() == indent.getIndentId()){
+                if(indents.get(i).getIndentId().equals(indent.getIndentId())){
                     indents.remove(i);
                 }else{
                     indents.get(i).setStatus("回绝");

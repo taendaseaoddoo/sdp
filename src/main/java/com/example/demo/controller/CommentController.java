@@ -35,12 +35,11 @@ public class CommentController {
     private InformationService informationService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addComment(@RequestParam(value = "indentId") String indentId,@RequestParam(value = "reason") String reason,@RequestParam(value = "commentType") int commentType) {
+    public HashMap<String, Object> addComment(@RequestParam(value = "comment") Comment comment) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        Comment comment=new Comment(indentId,reason,commentType);
+        commentService.addComment(comment);
         if(comment != null){
             hashMap.put("status", "success");
-            commentService.addComment(comment);
             hashMap.put("commentId", comment.getCommentId());
         }else{
             hashMap.put("status", "failure");
