@@ -32,11 +32,12 @@ public class ComplaintController {
     private UserService userService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addComplaint(@RequestParam(value = "complaint") Complaint complaint) {
+    public HashMap<String, Object> addComplaint(@RequestParam(value = "type")String type,@RequestParam(value = "reason")String reason) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        complaintService.addComplaint(complaint);
+        Complaint complaint=new Complaint(type,reason);
         if(complaint != null){
             hashMap.put("status", "success");
+            complaintService.addComplaint(complaint);
             hashMap.put("complaintId", complaint.getComplaintId());
         }else{
             hashMap.put("status", "failure");

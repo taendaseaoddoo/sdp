@@ -32,11 +32,14 @@ public class UserController {
     private CommentService commentService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addUser(@RequestParam(value = "user") User user) {
+    public HashMap<String, Object> addUser(@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") char gender,@RequestParam(value = "studentId") String studentId,
+                                           @RequestParam(value = "department") String department,@RequestParam(value = "major") String major,
+                                           @RequestParam(value = "wechatId") String wechatId,@RequestParam(value = "phoneNum") String phoneNum) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        userService.addUser(user);
+        User user=new User(userName,gender,studentId,department,major,wechatId,phoneNum,0,"","user");
         if(user != null){
             hashMap.put("status", "success");
+            userService.addUser(user);
             hashMap.put("userId", user.getUserId());
         }else{
             hashMap.put("status", "failure");

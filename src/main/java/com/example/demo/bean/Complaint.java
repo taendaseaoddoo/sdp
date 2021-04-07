@@ -35,6 +35,13 @@ public class Complaint {
     //投诉处理状态
     private String status;
 
+    public Complaint(){}
+
+    public Complaint(String type,String reason){
+        this.type=type;
+        this.reason=reason;
+    }
+
     public String getComplaintId() {
         return complaintId;
     }

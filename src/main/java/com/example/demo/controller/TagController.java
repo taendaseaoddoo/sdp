@@ -19,11 +19,12 @@ public class TagController {
     private TagService tagService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addTag(@RequestParam(value = "tag") Tag tag) {
+    public HashMap<String, Object> addTag(@RequestParam(value = "tagName") String tagName,@RequestParam(value = "description") String description) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        tagService.addTag(tag);
+        Tag tag=new Tag(tagName,description);
         if(tag != null){
             hashMap.put("status", "success");
+            tagService.addTag(tag);
             hashMap.put("tag", tag.getTagId());
         }else{
             hashMap.put("status", "failure");
