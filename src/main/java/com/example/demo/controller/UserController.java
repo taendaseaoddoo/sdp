@@ -114,16 +114,18 @@ public class UserController {
         HashMap<String, Object> hashMap = new HashMap<>();
         List<Indent> indents = indentService.getIndentByUserAndStatus(userId, "已完成");
         int total = indents.size();
-        List<Comment> comments = commentService.getCommentByUser(userId);
+        List<Comment> comments = commentService.getGoodComment(userId);
         int good = comments.size();
         double rate = 0.0;
+        int rateInt = 0;
         if(total != 0){
-            rate = (good/total) * 100;
+            rate = ((double)good/(double)total) * 100;
+            rateInt = (int) rate;
         }else{
         }
         if(indents != null && comments != null){
             hashMap.put("status", "success");
-            hashMap.put("rate", rate);
+            hashMap.put("rate", rateInt);
         }else{
             hashMap.put("status", "failure");
         }
