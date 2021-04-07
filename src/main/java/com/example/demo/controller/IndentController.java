@@ -219,6 +219,9 @@ class IndentController {
             User user = userService.getUserById(userId);
             map3.put("user", user);
             map3.put("information", information);
+            List indents = ((List)(getByInformation(information.getInformationId()).get("indents")));
+            if(indents != null && indents.size()!= 0)
+                map3.put("indent", indents.get(0));
             listRelease.add(map3);
         }
         hashMap.put("release", listRelease);
