@@ -58,7 +58,7 @@ public class ComplaintController {
         return hashMap;
     }
 
-    @DeleteMapping(value = "/delete")
+    @RequestMapping(value = "/delete")
     public HashMap<String, Object> deleteComplaint(@RequestParam(value = "complaintId") String complaintId) {
         HashMap<String, Object> hashMap = new HashMap<>();
 //        String complaintId = complaint.getComplaintId();

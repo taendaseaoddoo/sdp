@@ -46,7 +46,7 @@ class IndentController {
         return hashMap;
     }
 
-    @PostMapping(value = "/delete")
+    @RequestMapping(value = "/delete")
     public void deleteIndent(@RequestParam(value = "indentId") String indentId) {
         indentService.deleteIndent(indentId);
     }
