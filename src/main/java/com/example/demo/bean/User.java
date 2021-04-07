@@ -22,7 +22,7 @@ public class User {
     private String userName;
 
     //用户性别
-    private char gender;
+    private String gender;
 
     //用户学号
     private String studentId;
@@ -55,7 +55,7 @@ public class User {
     public User(){}
 
 
-    public User(String userName, char gender, String studentId,String department,String major,String wechatId,String phoneNum,int favorableNum,String avatar,String role){
+    public User(String userName, String gender, String studentId,String department,String major,String wechatId,String phoneNum,int favorableNum,String avatar,String role){
         this.userName=userName;
         this.gender=gender;
         this.studentId=studentId;
@@ -84,11 +84,11 @@ public class User {
         this.userName = userName;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

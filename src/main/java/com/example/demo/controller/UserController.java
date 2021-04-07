@@ -32,7 +32,7 @@ public class UserController {
     private CommentService commentService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addUser(@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") char gender,@RequestParam(value = "studentId") String studentId,
+    public HashMap<String, Object> addUser(@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") String gender,@RequestParam(value = "studentId") String studentId,
                                            @RequestParam(value = "department") String department,@RequestParam(value = "major") String major,
                                            @RequestParam(value = "wechatId") String wechatId,@RequestParam(value = "phoneNum") String phoneNum) {
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/modify")
-    public void modifyUser(@RequestParam(value = "userId") String userId,@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") char gender,
+    public void modifyUser(@RequestParam(value = "userId") String userId,@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") String gender,
                            @RequestParam(value = "department") String department,@RequestParam(value = "major") String major,
                            @RequestParam(value = "phoneNum") String phoneNum,@RequestParam(value = "studentId") String studentId) {
         User user=userService.getUserById(userId);

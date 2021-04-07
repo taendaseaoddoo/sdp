@@ -130,19 +130,19 @@ class IndentController {
         Indent indent = indentService.getIndentById(indentId);
         if(("完成订单").equals(status)){
             String oldStatus = indent.getStatus();
-            if(oldStatus != "单方完成") {
-                indent.setStatus("单方完成");
-                indentService.addIndent(indent);
-                String informationId = indent.getInformationId();
-                Information information = informationService.getInformationById(informationId);
-                information.setStatus("单方完成");
-                informationService.addInformation(information);
-            }else{
+            if(("单方完成").equals(oldStatus)) {
                 indent.setStatus("已完成");
                 indentService.addIndent(indent);
                 String informationId = indent.getInformationId();
                 Information information = informationService.getInformationById(informationId);
                 information.setStatus("已完成");
+                informationService.addInformation(information);
+            }else{
+                indent.setStatus("单方完成");
+                indentService.addIndent(indent);
+                String informationId = indent.getInformationId();
+                Information information = informationService.getInformationById(informationId);
+                information.setStatus("单方完成");
                 informationService.addInformation(information);
             }
         }else if(("签约").equals(status)){
