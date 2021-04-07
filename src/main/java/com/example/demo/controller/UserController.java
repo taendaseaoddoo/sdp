@@ -117,13 +117,15 @@ public class UserController {
         List<Comment> comments = commentService.getGoodComment(userId);
         int good = comments.size();
         double rate = 0.0;
+        int rateInt = 0;
         if(total != 0){
             rate = ((double)good/(double)total) * 100;
+            rateInt = (int) rate;
         }else{
         }
         if(indents != null && comments != null){
             hashMap.put("status", "success");
-            hashMap.put("rate", rate);
+            hashMap.put("rate", rateInt);
         }else{
             hashMap.put("status", "failure");
         }
