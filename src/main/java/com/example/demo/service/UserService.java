@@ -15,11 +15,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository = null;
 
-    @javax.transaction.Transactional
-    public void save(User user){
-        userRepository.save(user);
-    }
-
     @Transactional
     public User getUserById(String userId) { return userRepository.findUserByUserId(userId); }
 

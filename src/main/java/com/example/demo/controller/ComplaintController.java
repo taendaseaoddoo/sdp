@@ -32,12 +32,11 @@ public class ComplaintController {
     private UserService userService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addComplaint(@RequestParam(value = "type")String type,@RequestParam(value = "reason")String reason) {
+    public HashMap<String, Object> addComplaint(@RequestParam(value = "complaint") Complaint complaint) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        Complaint complaint=new Complaint(type,reason);
+        complaintService.addComplaint(complaint);
         if(complaint != null){
             hashMap.put("status", "success");
-            complaintService.addComplaint(complaint);
             hashMap.put("complaintId", complaint.getComplaintId());
         }else{
             hashMap.put("status", "failure");
@@ -58,12 +57,12 @@ public class ComplaintController {
         return hashMap;
     }
 
-    @RequestMapping(value = "/delete")
-    public HashMap<String, Object> deleteComplaint(@RequestParam(value = "complaintId") String complaintId) {
+    @DeleteMapping(value = "/delete")
+    public HashMap<String, Object> deleteComplaint(@RequestParam(value = "complaint") Complaint complaint) {
         HashMap<String, Object> hashMap = new HashMap<>();
-//        String complaintId = complaint.getComplaintId();
+        String complaintId = complaint.getComplaintId();
         complaintService.deleteComplaint(complaintId);
-        if(complaintId != ""){
+        if(complaint != null){
             hashMap.put("status", "success");
             hashMap.put("complaintId", complaintId);
         }else{

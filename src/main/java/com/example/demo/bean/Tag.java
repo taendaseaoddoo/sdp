@@ -25,13 +25,6 @@ public class Tag {
     //标签描述
     private String description;
 
-    public Tag(){}
-
-    public Tag(String tagName, String description){
-        this.tagName=tagName;
-        this.description=description;
-    }
-
     public String getTagId() {
         return tagId;
     }

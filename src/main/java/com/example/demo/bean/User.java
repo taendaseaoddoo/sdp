@@ -52,22 +52,6 @@ public class User {
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<Information> collects;
 
-    public User(){}
-
-
-    public User(String userName, char gender, String studentId,String department,String major,String wechatId,String phoneNum,int favorableNum,String avatar,String role){
-        this.userName=userName;
-        this.gender=gender;
-        this.studentId=studentId;
-        this.department=department;
-        this.major=major;
-        this.wechatId=wechatId;
-        this.phoneNum=phoneNum;
-        this.favorableNum=favorableNum;
-        this.avatar=avatar;
-        this.role=role;
-    }
-
     public String getUserId() {
         return userId;
     }
