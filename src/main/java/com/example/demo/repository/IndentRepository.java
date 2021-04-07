@@ -3,8 +3,6 @@ package com.example.demo.repository;
 import com.example.demo.bean.Indent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,10 +12,6 @@ import java.util.List;
  */
 @Repository
 public interface IndentRepository extends JpaRepository<Indent, String>, JpaSpecificationExecutor<Indent> {
-
-    @Modifying
-    @Query("delete from Indent i where i.indentId = ?1")
-    int deleteByIndentId(String indentId);
 
     Indent findIndentByIndentId(String indentId);
 
@@ -34,7 +28,5 @@ public interface IndentRepository extends JpaRepository<Indent, String>, JpaSpec
     List<Indent> getAllByApplicationIdEqualsAndStatusIn(String userId, List<String> status);
 
 //    List<Indent> getAllByApplicationIdEqualsOrPublisherIdEqualsAndStatusIn(String userId, String userid, List<String> status);
-
-    List<Indent> getAllByInformationIdEqualsAndStatusNot(String informationId, String status);
 
 }

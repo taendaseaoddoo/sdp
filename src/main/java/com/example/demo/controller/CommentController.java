@@ -66,7 +66,7 @@ public class CommentController {
         List<Comment> comments = commentService.getCommentByIndent(indentId);
         int count=0;
         for(int i=0;i<comments.size();i++) {
-            if (comments.get(i).getEvaluatedId().equals(evaluatedId)) {
+            if (comments.get(i).getEvaluatedId() == evaluatedId) {
                 count++;
                 hashMap.put("status", "success");
                 hashMap.put("comment", comments.get(i));

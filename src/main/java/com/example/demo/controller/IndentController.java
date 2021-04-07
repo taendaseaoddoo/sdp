@@ -46,11 +46,6 @@ class IndentController {
         return hashMap;
     }
 
-    @PostMapping(value = "/delete")
-    public void deleteIndent(@RequestParam(value = "indentId") String indentId) {
-        indentService.deleteIndent(indentId);
-    }
-
     @PostMapping(value = "/add")
     public HashMap<String, Object> addIndent(@RequestParam(value = "indent") Indent indent) {
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -68,8 +63,7 @@ class IndentController {
     public HashMap<String, Object> getByInformation(@RequestParam(value = "informationId") String informationId) {
         HashMap<String, Object> hashMap = new HashMap<>();
         List<HashMap<String, Object>> list = new ArrayList<>();
-//        List<Indent> indents = indentService.getIndentByInformationId(informationId);
-        List<Indent> indents = indentService.getIndentByIdAndStatusNot(informationId,"回绝");
+        List<Indent> indents = indentService.getIndentByInformationId(informationId);
         for(Indent indent : indents){
             HashMap<String, Object> map1 = new HashMap<>();
             String applicationId = indent.getApplicationId();
