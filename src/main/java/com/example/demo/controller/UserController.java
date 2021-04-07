@@ -48,17 +48,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/modify")
-    public void modifyUser(@RequestParam(value = "userId") String userId,@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") char gender,
-                           @RequestParam(value = "department") String department,@RequestParam(value = "major") String major,
-                           @RequestParam(value = "phoneNum") String phoneNum,@RequestParam(value = "studentId") String studentId) {
-        User user=userService.getUserById(userId);
-        user.setUserName(userName);
-        user.setGender(gender);
-        user.setDepartment(department);
-        user.setMajor(major);
-        user.setPhoneNum(phoneNum);
-        user.setStudentId(studentId);
-        userService.save(user);
+    public void modifyUser(@RequestParam(value = "user") User user) {
+        userService.addUser(user);
     }
 
     @GetMapping(value = "/getOne")
