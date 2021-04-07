@@ -35,6 +35,14 @@ public class Comment {
     //评价理由
     private String reason;
 
+    public Comment(){}
+
+    public Comment(String reason,String indentId,int commentType){
+        this.indentId=indentId;
+        this.reason=reason;
+        this.commentType=commentType;
+    }
+
     public String getCommentId() {
         return commentId;
     }
