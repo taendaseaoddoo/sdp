@@ -59,11 +59,11 @@ public class ComplaintController {
     }
 
     @DeleteMapping(value = "/delete")
-    public HashMap<String, Object> deleteComplaint(@RequestParam(value = "complaint") Complaint complaint) {
+    public HashMap<String, Object> deleteComplaint(@RequestParam(value = "complaintId") String complaintId) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        String complaintId = complaint.getComplaintId();
+//        String complaintId = complaint.getComplaintId();
         complaintService.deleteComplaint(complaintId);
-        if(complaint != null){
+        if(complaintId != ""){
             hashMap.put("status", "success");
             hashMap.put("complaintId", complaintId);
         }else{
