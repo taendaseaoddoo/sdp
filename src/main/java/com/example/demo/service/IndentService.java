@@ -61,6 +61,11 @@ public class IndentService {
         return indentRepository.getAllByApplicationIdEqualsAndStatusIn(userId, status);
     }
 
+    @Transactional
+    public List<Indent> getIndentByIdAndStatusNot(String informationId, String status){
+        return indentRepository.getAllByApplicationIdEqualsAndStatusNot(informationId,status);
+    }
+
 //    @Transactional
 //    public List<Indent> getIndentByTwoIdAndStatus(String userId, List<String> status) {
 //        return indentRepository.getAllByApplicationIdEqualsOrPublisherIdEqualsAndStatusIn(userId, userId, status);
