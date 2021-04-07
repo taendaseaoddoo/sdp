@@ -32,11 +32,14 @@ public class UserController {
     private CommentService commentService;
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addUser(@RequestParam(value = "user") User user) {
+    public HashMap<String, Object> addUser(@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") char gender,@RequestParam(value = "studentId") String studentId,
+                                           @RequestParam(value = "department") String department,@RequestParam(value = "major") String major,
+                                           @RequestParam(value = "wechatId") String wechatId,@RequestParam(value = "phoneNum") String phoneNum) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        userService.addUser(user);
+        User user=new User(userName,gender,studentId,department,major,wechatId,phoneNum,0,"","user");
         if(user != null){
             hashMap.put("status", "success");
+            userService.addUser(user);
             hashMap.put("userId", user.getUserId());
         }else{
             hashMap.put("status", "failure");
@@ -45,8 +48,17 @@ public class UserController {
     }
 
     @PostMapping(value = "/modify")
-    public void modifyUser(@RequestParam(value = "user") User user) {
-        userService.addUser(user);
+    public void modifyUser(@RequestParam(value = "userId") String userId,@RequestParam(value = "userName") String userName,@RequestParam(value = "gender") char gender,
+                           @RequestParam(value = "department") String department,@RequestParam(value = "major") String major,
+                           @RequestParam(value = "phoneNum") String phoneNum,@RequestParam(value = "studentId") String studentId) {
+        User user=userService.getUserById(userId);
+        user.setUserName(userName);
+        user.setGender(gender);
+        user.setDepartment(department);
+        user.setMajor(major);
+        user.setPhoneNum(phoneNum);
+        user.setStudentId(studentId);
+        userService.save(user);
     }
 
     @GetMapping(value = "/getOne")

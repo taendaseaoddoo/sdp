@@ -44,6 +44,15 @@ public class Indent {
     //保证完成时间
     private Date guaranteTime;
 
+    public Indent(){}
+
+    public Indent(double price,String description,Date modifyTime,Date guaranteTime){
+        this.price=price;
+        this.description=description;
+        this.modifyTime=modifyTime;
+        this.guaranteTime=guaranteTime;
+    }
+
     public String getIndentId() {
         return indentId;
     }

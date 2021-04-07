@@ -66,6 +66,31 @@ public class Information {
     //信息是否删除
     private int isDelete;
 
+    public Information(){}
+
+    public Information(String userId, String title, String location,List<Tag> tags,double price,Date deadline,String description){
+        this.userId=userId;
+        this.title=title;
+        this.location=location;
+        this.tags=tags;
+        this.price=price;
+        this.deadline=deadline;
+        this.description=description;
+    }
+
+    public Information(String userId, String title, String location,List<Tag> tags,double price,Date createTime,Date deadline,String description,int memberCount,int memberRemain){
+        this.userId=userId;
+        this.title=title;
+        this.location=location;
+        this.tags=tags;
+        this.price=price;
+        this.createTime=createTime;
+        this.deadline=deadline;
+        this.description=description;
+        this.memberCount=memberCount;
+        this.memberRemain=memberRemain;
+    }
+
     public String getInformationId() {
         return informationId;
     }

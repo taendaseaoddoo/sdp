@@ -46,17 +46,19 @@ class IndentController {
         return hashMap;
     }
 
-    @PostMapping(value = "/delete")
+    @RequestMapping(value = "/delete")
     public void deleteIndent(@RequestParam(value = "indentId") String indentId) {
         indentService.deleteIndent(indentId);
     }
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addIndent(@RequestParam(value = "indent") Indent indent) {
+    public HashMap<String, Object> addIndent(@RequestParam(value = "price") double price,@RequestParam(value = "description") String description,
+                                             @RequestParam(value = "modifyTime") Date modifyTime,@RequestParam(value = "guaranteTime") Date guaranteTime) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        indentService.addIndent(indent);
+        Indent indent=new Indent(price,description,modifyTime,guaranteTime);
         if(indent != null){
             hashMap.put("status", "success");
+            indentService.addIndent(indent);
             hashMap.put("indentId", indent.getIndentId());
         }else{
             hashMap.put("status", "failure");

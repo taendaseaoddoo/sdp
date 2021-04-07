@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,11 +35,14 @@ public class InformationController {
     }
 
     @PostMapping(value = "/add")
-    public HashMap<String, Object> addInformation(@RequestParam(value = "information") Information information) {
+    public HashMap<String, Object> addInformation(@RequestParam(value = "userId") String userId, @RequestParam(value = "title") String title, @RequestParam(value = "location") String location,
+                                                  @RequestParam(value = "tags") List<Tag> tags, @RequestParam(value = "price") double price,
+                                                  @RequestParam(value = "deadline") Date deadline, @RequestParam(value = "description") String description) {
         HashMap<String, Object> hashMap = new HashMap<>();
-        informationService.addInformation(information);
+        Information information=new Information(userId,title,location,tags,price,deadline,description);
         if(information != null){
             hashMap.put("status", "success");
+            informationService.addInformation(information);
             hashMap.put("informationId", information.getInformationId());
         }else{
             hashMap.put("status", "failure");
