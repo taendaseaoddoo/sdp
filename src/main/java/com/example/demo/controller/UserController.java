@@ -118,7 +118,7 @@ public class UserController {
         int good = comments.size();
         double rate = 0.0;
         if(total != 0){
-            rate = (good/total) * 100;
+            rate = ((double)good/(double)total) * 100;
         }else{
         }
         if(indents != null && comments != null){
